@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <template id="assets_frontend_fe" inherit_id="web.assets_frontend">
+            <xpath expr="." position="inside"> 
+                <script type="text/javascript" src="/emipro_theme_fe/static/src/js/website.js"></script>
+            </xpath>
+        </template>
+        
+        <template id="emporio_fe_address_b2b" inherit_id="website_sale.address_b2b">
+        
+            <xpath expr="//label[@for='vat']" position="after">
+                <t>                  
+                    <select name="fe_tipo_documento" id="fe_tipo_documento" t-attf-class="form-control #{error.get('fe_tipo_documento') and 'is-invalid' or ''}" t-att-readonly="'1' if 'vat' in checkout and checkout['vat'] and not can_edit_vat else None">
+                        <option t-att-value="22" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '22'">Cédula Extranjería</option>
+                        <option t-att-value="13" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '13'">Cédula de Ciudadanía</option>    
+                        <option t-att-value="21" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '21'">Tarjeta Extranjería</option>
+                        <option t-att-value="42" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '42'">Nº Identificación extranjera</option>                                              
+                        <option t-att-value="31" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '31'">NIT</option>
+                        <option t-att-value="50" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '50'">VAT Extranjero</option>
+                        <option t-att-value="11" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '11'">Registro Civil</option>
+                        <option t-att-value="41" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '41'">Pasaporte</option>
+                        <option t-att-value="12" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '12'">Tarjeta Identidad</option>                                           
+                        
+                        <option t-att-value="91" t-att-selected="'fe_tipo_documento' in checkout and checkout['fe_tipo_documento'] == '91'">NIUP *</option>
+                    </select>
+                </t>
+            </xpath>
+
+            <xpath expr="//div[@id='div_phone']" position="after">
+                <t>
+                    <div t-attf-class="form-group #{error.get('webchat') and 'o_has_error' or ''} col-lg-6">
+                        <label class="col-form-label font-weight-normal label-optional" for="webchat"><i class="fa fa-weixin"/> Wechat</label>
+                        <input type="text" name="webchat" t-attf-class="form-control #{error.get('webchat') and 'is-invalid' or ''}" t-att-value="'webchat' in checkout and checkout['webchat']"/>
+                    </div>
+                </t>
+            </xpath>
+            
+             <xpath expr="//input[@name='vat']" position="after">
+                <t>
+                    <input type="text" placeholder="Código Verificacion" name="fe_digito_verificacion" id="fe_digito_verificacion" t-attf-class="invisible form-control #{error.get('fe_digito_verificacion') and 'is-invalid' or ''}" t-att-value="'fe_digito_verificacion' in checkout and checkout['fe_digito_verificacion']" style="width: 100px;"/>
+                    <button t-attf-class="invisible go-rues">
+                        <a href="https://muisca.dian.gov.co/WebRutMuisca/DefConsultaEstadoRUT.faces" target="_blank">
+                            <i class="fa fa-info-circle"></i> Consultar
+                        </a>
+                    </button>  
+
+                </t>
+            </xpath>
+
+            <xpath expr="//input[@name='field_required']" position="replace">
+                <t>
+                    <input type="hidden" name="field_required" t-att-value="'vat'" />
+                </t>
+            </xpath>
+
+        </template>
+
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>res.partner</value>
+            <value eval="[
+                            'fe_tipo_documento',
+                            'fe_digito_verificacion',
+                            'webchat'
+                         ]"/>
+        </function>
+        
+
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL: https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.fb_pixel</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="cdn_setting" position="after">
+                    <div class="col-xs-12 col-md-6 o_setting_box" id="fb_pixel_setting">
+                        <div class="o_setting_left_pane">
+                            <field name="has_fb_pixel"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="has_fb_pixel"/>
+                            <span class="fa fa-lg fa-globe" title="Values set here are website-specific." groups="website.group_multi_website"/>
+                            <div class="text-muted">
+                                Deploy and track Facebook ad-driven visitor activity on your website.
+                            </div>
+                            <div class="content-group" attrs="{'invisible': [('has_fb_pixel', '=', False)]}">
+                                <div class="row mt16">
+                                    <label class="col-md-3 o_light_label" string="Pixel ID" for="fb_pixel_key"/>
+                                    <field name="fb_pixel_key" placeholder="XXXXXXXXXXXXXX"
+                                        attrs="{'required': [('has_fb_pixel', '!=', False)]}"/>
+                                </div>
+                            </div>
+                            <div attrs="{'invisible': [('has_fb_pixel', '=', False)]}">
+                                <a href="https://www.facebook.com/business/help/952192354843755"
+                                        class="oe_link fa fa-arrow-right" target="_blank">
+                                    How to get my Facebook Pixel ID
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

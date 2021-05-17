@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--============================ Extend Ajax Add to Cart js Files =======================-->
+    <template id="extend_ajax_add_to_cart" inherit_id="website.assets_frontend">
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript" src="/abs_hide_cart_popup/static/src/js/frontend/ajax_cart.js"/>
+        </xpath>
+    </template>
+</odoo>

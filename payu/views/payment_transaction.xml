@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>	
+        
+		<record id="payment_transaction_form_payu" model="ir.ui.view">
+			<field name="name">payment.transaction.form.payu</field>
+			<field name="model">payment.transaction</field>
+			<field name="inherit_id" ref="payment.transaction_form" />
+			<field name="arch" type="xml">
+				<field name="date" position="after">  
+					<field name="payu_trans_id" readonly="1" /> 
+					<field name="payu_trans_order_ref" readonly="1" />               
+					<field name="payu_response" readonly="1" />            
+				</field>
+			</field>
+		</record>
+        
+        <menuitem
+                    action='payment.action_payment_transaction'
+                    id='sale_menu_payu_payment_transactions'
+                    parent='sale.menu_sales_config'
+                    groups="base.group_no_one"
+                    sequence='5' />
+        
+        <menuitem
+                    action='payment.action_payment_transaction'
+                    id='website_sale_menu_payu_payment_transactions'
+                    parent='website_sale.menu_orders'
+                    groups="base.group_no_one"
+                    sequence='100' />
+        
+	</data>
+</odoo>

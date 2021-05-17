@@ -1,0 +1,12 @@
+<odoo>
+    <record model="ir.ui.view" id="partner_form_view">
+        <field name="name">lang FE</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="idioma_fe" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_co_postal_user,l10n_co_postal.postal_code,model_l10n_co_postal_postal_code,,1,1,1,1
+access_l10n_co_postal_config_cp_details,l10n_co_postal.config_cp_details,model_l10n_co_postal_config_cp_details,,1,1,1,1
+access_l10n_co_postal_config_cp,l10n_co_postal.config_cp,model_l10n_co_postal_config_cp,,1,1,1,1

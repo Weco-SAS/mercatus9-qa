@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id ="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+
+            <xpath expr="//div[@id='informations']/div[last()]" position="after">
+            
+                <t t-if="doc.state!='draft'">
+                    <t t-set="_transaction" t-value="doc.get_portal_last_transaction()"/>
+                </t>
+
+                <t t-if="doc.state=='draft'">
+                    <t t-set="_transaction" t-value="doc.get_portal_last_draft_transaction()"/>
+                </t>
+                
+                <t t-if="_transaction">
+                        <div t-if="doc.last_reference" class="col-auto mw-100 mb-2">
+                            <strong>Payu Reference</strong>
+                            <p class="m-0" t-field="doc.last_reference"/>
+                        </div>
+
+                        <!--
+                        <div t-if="_transaction.payu_response" class="col-auto mw-100 mb-2">
+                            <strong>Payu Response</strong>
+                            <p class="m-0" t-field="_transaction.payu_response"/>
+                        </div>
+                        -->
+                </t>
+
+            </xpath>
+            
+        </template>
+    </data>
+</odoo>

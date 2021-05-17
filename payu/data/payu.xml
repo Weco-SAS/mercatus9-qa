@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="payment_acquirer_payu" model="payment.acquirer">
+			<field name="name">Payu</field>
+			<field name="provider">payu</field>
+			<field name="image_128" type="base64" file="payu/static/description/icon.png" />
+			<field name="payu_merchant_id">508029</field>
+			<field name="payu_account_id">512323</field>
+			<field name="payu_api_key">4Vj8eK4rloUd272L48hsrarnUA</field>
+			<field name="payu_login">pRRXKOl8ikMmt9u</field>
+		</record>
+		<record id="payment_journal_payu" model="account.journal">
+			<field name="name">Payu</field>
+			<field name="code">BPAYU</field>
+			<field name="type">bank</field>
+		</record>
+		<record id="payment_icon" model="payment.icon">
+			<field name="name">BPAYU</field>
+			<field name="image" type="base64" file="payu/static/description/icon.png" />
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <!-- start:views -->
+        <record model="ir.ui.view" id="config_cp_tree_view">
+            <field name="name">l10n_co_postal_config_cp_tree</field>
+            <field name="model">l10n_co_postal.config_cp</field>
+            <field name="arch" type="xml">
+                <tree string="Configuración Factura Electrónica" editable="bottom">
+                    <field name="config_cp_detail_id" />
+                    <field name="model_name" />
+                    <field name="field_name" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="config_cp_form_view">
+            <field name="name">l10n_co_postal_config_cp_form</field>
+            <field name="model">l10n_co_postal.config_cp</field>
+            <field name="arch" type="xml">
+                <form string="Configuración Códigos Postales">
+                    <sheet>
+                        <group>
+                            <field name="config_cp_detail_id" />
+                            <field name="model_name" />
+                            <field name="field_name" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- end:views -->
+
+        <!-- start:actions -->
+        <record model="ir.actions.act_window"
+            id="l10n_co_postal_config_cp_list_action">
+            <field name="name">Configuración Códigos Postales</field>
+            <field name="res_model">l10n_co_postal.config_cp</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first Config Postal Code</p>
+            </field>
+        </record>
+        <!-- end:actions -->
+
+        <!-- start:menus -->
+
+        <menuitem id="l10n_co_postal_config_cp_config_submenu"
+			name="Parámetros"
+            parent="l10n_co_postal_menu"
+			action="l10n_co_postal_config_cp_list_action"
+            groups=""
+        />
+        <!-- end:menus -->
+    </data>
+</odoo>

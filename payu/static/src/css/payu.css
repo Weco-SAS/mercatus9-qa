@@ -1,0 +1,13 @@
+.payu-response-row label {
+    text-align: left;
+    font-weight: bold;
+}
+.payu-response-row
+{
+    padding-top: 10px;
+    border-bottom: 1px dashed #ddd;
+}
+.payu-response-row label
+{
+    padding-right: 4px;
+}

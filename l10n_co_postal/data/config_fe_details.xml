@@ -1,0 +1,19 @@
+<odoo>
+    <data noupdate="0">
+        <record model="l10n_co_postal.config_cp_details" id="kfeco_config_cp_detail_ciudad">
+            <field name="name">postal_ciudad</field>
+            <field name="description">Ciudad Código postal</field>
+            <field name="tipo">l10n_co_cities.city</field>
+        </record>
+        <record model="l10n_co_postal.config_cp_details" id="kfeco_config_cp_detail_departamento">
+            <field name="name">postal_departamento</field>
+            <field name="description">Nombre departamento Código Postal</field>
+            <field name="tipo">res.country.state</field>
+        </record>
+        <record model="l10n_co_postal.config_cp_details" id="kfeco_config_cp_detail_pais">
+            <field name="name">postal_pais</field>
+            <field name="description">Nombre Pais Código Postal</field>
+            <field name="tipo">res.country</field>
+        </record>
+    </data>
+</odoo>

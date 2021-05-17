@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+website_cod_user,website_cod_user_name,bi_website_cash_on_delivery.model_cod_config,,1,1,1,1
+web_res_zip,web.res.zip,bi_website_cash_on_delivery.model_res_zip,,1,1,1,1
+web_cod_payment_collection,web.cod.payment.collection,bi_website_cash_on_delivery.model_cod_payment_collection,,1,1,1,0

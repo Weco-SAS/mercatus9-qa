@@ -1,0 +1,133 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-11 22:48+0000\n"
+"PO-Revision-Date: 2021-05-11 22:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payu
+#: model_terms:ir.ui.view,arch_db:payu.report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:payu.sale_order_portal_content_inherit
+msgid "<strong>Payu Reference</strong>"
+msgstr "Payu參考"
+
+#. module: payu
+#: model_terms:ir.ui.view,arch_db:payu.sale_order_portal_content_inherit
+msgid "<strong>Payu Response</strong>"
+msgstr "Payu回應"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_acquirer__payu_api_key
+msgid "API KEY"
+msgstr "API密鑰"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_acquirer__payu_account_id
+msgid "Account ID"
+msgstr "帳戶ID"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_acquirer__payu_merchant_id
+msgid "Merchant ID"
+msgstr "商戶編號"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_acquirer__payu_login
+msgid "Login API"
+msgstr "登錄API"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_transaction__payu_trans_order_ref
+msgid "Order Ref"
+msgstr "訂單參考"
+
+#. module: payu
+#: model:ir.model,name:payu.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "付款收单单位"
+
+#. module: payu
+#: model:ir.model,name:payu.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "付款交易"
+
+#. module: payu
+#: model:ir.ui.menu,name:payu.sale_menu_payu_payment_transactions
+#: model:ir.ui.menu,name:payu.website_sale_menu_payu_payment_transactions
+msgid "Payment Transactions"
+msgstr "付款交易"
+
+#. module: payu
+#: model:ir.model.fields.selection,name:payu.selection__payment_acquirer__provider__payu
+#: model:payment.acquirer,name:payu.payment_acquirer_payu
+msgid "Payu"
+msgstr "Payu"
+
+#. module: payu
+#: model:ir.actions.server,name:payu.payu_pending_transaction_ir_actions_server
+#: model:ir.cron,cron_name:payu.payu_pending_transaction
+#: model:ir.cron,name:payu.payu_pending_transaction
+msgid "Payu - Process Pending Payment"
+msgstr "Payu-待處理付款"
+
+#. module: payu
+#: model_terms:ir.ui.view,arch_db:payu.website_sale_confirmation_inherit
+msgid "Payu Reference:"
+msgstr "Payu參考:"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_transaction__payu_response
+#: model:ir.model.fields,field_description:payu.field_sale_order__payu_response
+msgid "PayuLatam"
+msgstr "PayuLatam"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_acquirer__provider
+msgid "Provider"
+msgstr "供应商"
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_sale_order__last_reference
+msgid "Reference Code"
+msgstr "參考代碼"
+
+#. module: payu
+#: model:ir.model,name:payu.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: payu
+#: model_terms:payment.acquirer,cancel_msg:payu.payment_acquirer_payu
+msgid "Su pago ha sido cancelado.<br>"
+msgstr ""
+
+#. module: payu
+#: model_terms:payment.acquirer,pending_msg:payu.payment_acquirer_payu
+msgid ""
+"Su pago ha sido procesado con éxito pero está esperando su aprobación.<br>"
+msgstr ""
+
+#. module: payu
+#: model_terms:payment.acquirer,done_msg:payu.payment_acquirer_payu
+msgid "Su pago ha sido procesado con éxito. ¡Gracias!<br>"
+msgstr ""
+
+#. module: payu
+#: model:ir.model.fields,field_description:payu.field_payment_transaction__payu_trans_id
+msgid "Trans ID"
+msgstr ""
+
+#. module: payu
+#: model_terms:payment.acquirer,auth_msg:payu.payment_acquirer_payu
+msgid "Your payment has been authorized."
+msgstr ""

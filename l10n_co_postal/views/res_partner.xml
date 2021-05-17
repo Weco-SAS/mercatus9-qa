@@ -1,0 +1,15 @@
+<odoo>
+    <record id="l10n_co_postal_res_partner_view" model="ir.ui.view">
+        <field name="name">l10n_co_postal.tree.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_id']" position="after">
+                <field name="postal_id" placeholder="Código Postal"/>
+            </xpath>
+            <xpath expr="//field[@name='zip']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

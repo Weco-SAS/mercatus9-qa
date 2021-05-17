@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL: https://store.webkul.com/license.html/ -->
+
+<odoo>
+  <data>
+    <template id="website_layout" inherit_id="website.layout" name="FB Pixel Snippet">
+      <xpath expr="//meta[@name='generator']" position="before">
+        <t t-if="website and website.fb_pixel_key and not editable">
+          <script>
+            dataLayer = [{}];
+          </script>
+          &lt;!-- Facebook Pixel Code --&gt;
+          <script id='fb_pixel'>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '<t t-esc="website.fb_pixel_key"/>');
+            fbq('track', 'PageView');
+          </script>
+          <noscript><img height="1" width="1" style="display:none"
+            t-attf-src="https://www.facebook.com/tr?id=#{website.fb_pixel_key}&amp;ev=PageView&amp;noscript=1"
+          /></noscript>
+          &lt;!-- End Facebook Pixel Code --&gt;
+        </t>
+      </xpath>
+    </template>
+
+    <template id="products" inherit_id="website_sale.products" name="Pixel search track">
+      <xpath expr="//div[@id='wrap']" position="before">
+        <t t-if="website and website.fb_pixel_key and not editable and search">
+          <script>
+            fbq('track', 'Search', {
+              search_string: '<t t-esc='search'/>',
+            });
+          </script>
+        </t>
+      </xpath>
+    </template>
+
+    <template id="product" inherit_id="website_sale.product" name="Pixel product track">
+        <xpath expr="//div[@id='wrap']" position="after">
+          <t t-if="website and website.fb_pixel_key and not editable">
+            <t t-set="combination_info" t-value="product._get_combination_info(only_template=True, add_qty=add_qty or 1, pricelist=pricelist)"/>
+            <script>
+              fbq('track', 'ViewContent', {
+                value: <t t-esc="combination_info['price']"/>,
+                currency: '<t t-esc="website.currency_id.name"/>',
+                content_ids: '<t t-if="product.default_code" t-esc="product.default_code"/> <t t-else="" t-esc="product.name" />',
+                content_type: 'Product',
+              });
+            </script>
+          </t>
+        </xpath>
+        <xpath expr="//a[@id='add_to_cart']" position="attributes">
+          <t t-if="website and website.fb_pixel_key and not editable">
+            <attribute name="t-attf-onclick">
+              fbq('track', 'AddToCart', {
+                content_name: '#{product.name}',
+                content_category: '#{category.name if category else ''}',
+                content_ids: ['#{product.id}'],
+                content_type: 'product',
+                value: #{combination_info['price']},
+                currency: '#{website.currency_id.name}'
+              });
+            </attribute>
+          </t>
+        </xpath>
+    </template>
+
+    <template id="checkout" inherit_id="website_sale.checkout" name="Pixel checkout track">
+        <xpath expr="//div[@id='wrap']" position="after">
+          <t t-if="website and website.fb_pixel_key and not editable">
+            <script>
+              fbq('track', 'InitiateCheckout', {
+                value: <t t-esc="order.amount_total"/>,
+                currency: '<t t-esc="order.pricelist_id.currency_id.name"/>',
+              });
+            </script>
+          </t>
+        </xpath>
+    </template>
+
+    <template id="payment" inherit_id="website_sale.payment" name="Pixel payment track">
+        <xpath expr="//div[@id='wrap']" position="after">
+          <t t-if="website and website.fb_pixel_key and not editable">
+            <script>
+              fbq('track', 'AddPaymentInfo');
+            </script>
+          </t>
+        </xpath>
+    </template>
+
+    <template id="confirmation" inherit_id="website_sale.confirmation" name="Pixel purchase track">
+        <xpath expr="//div[@id='wrap']" position="after">
+          <t t-if="website and website.fb_pixel_key and not editable">
+            <script>
+              fbq('track', 'Purchase', {
+                value: <t t-esc="order.amount_total"/>,
+                currency: '<t t-esc="order.pricelist_id.currency_id.name"/>',
+                'products': [
+                  <t t-foreach="order.order_line" t-as="line">
+                    {
+                      'id': '<t t-if="line.product_id.default_code" t-esc="line.product_id.default_code"/><t t-else="" t-esc="line.product_id.name" />',
+                      'quantity': '<t t-esc="line.product_uom_qty"/>',
+                      'item_price': '<t t-esc="line.price_unit"/>',
+                    },
+                  </t>
+                ]
+              });
+            </script>
+          </t>
+        </xpath>
+    </template>
+
+  </data>
+</odoo>

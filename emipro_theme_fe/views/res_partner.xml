@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="emportio_fe_partner" model="ir.ui.view">    
+            <field name="name">emportio.fe.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+
+                <field name="mobile" position="after">
+                    <field name="webchat" string="Wechat" placeholder="wechat"/>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,27 @@
+<odoo>
+    <template id="sale_order_portal_content_inherit" name="Payment Place to Pay in Preview" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//div/div" position="after">
+                <t t-if="sale_order.state!='draft'">
+                    <t t-set="_transaction" t-value="sale_order.get_portal_last_transaction()"/>
+                </t>
+
+                <t t-if="sale_order.state=='draft'">
+                    <t t-set="_transaction" t-value="sale_order.get_portal_last_draft_transaction()"/>
+                </t> 
+                <br></br>
+                <div class="row" t-if="_transaction">
+                    
+                    <div t-if="sale_order.last_reference" class="col-4">
+                        <strong>Payu Reference</strong>
+                        <p class="m-0" t-field="sale_order.last_reference"/>
+                    </div>
+                    
+                    <div t-if="_transaction.payu_response" class="col-4">
+                        <strong>Payu Response</strong>
+                        <p class="m-0" t-field="_transaction.payu_response"/>
+                    </div>
+                    
+                </div>
+        </xpath>
+    </template>
+</odoo>

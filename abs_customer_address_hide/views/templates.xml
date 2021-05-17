@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="extend_address" name="Extend - Address Management" inherit_id="website_sale.address">
+        <!--Hide Street 2-->
+        <xpath expr="//form//div[hasclass('form-row')]/div[7]" position="replace">
+            <div></div>
+        </xpath>
+
+        <!--Zip Code-->
+        <xpath expr="//form//div[hasclass('form-row')]//t[5]" position="replace">
+            <t t-if="'zip' in zip_city and zip_city.index('zip') &gt; zip_city.index('city')">
+                <div t-attf-class="form-group #{error.get('zip') and 'o_has_error' or ''} col-md-4 div_zip" style="visibility: hidden;">
+                    <label class="col-form-label label-optional" for="zip">Zip Code</label>
+                    <input type="text" name="zip" t-attf-class="form-control #{error.get('zip') and 'is-invalid' or ''}" t-att-value="'zip' in checkout and checkout['zip']" />
+                </div>
+            </t>
+        </xpath>
+
+        <!--Set Default Country STATE-->
+        <xpath expr="//form//div[hasclass('form-row')]/div[11]" position="replace">
+            <div t-attf-class="form-group #{error.get('state_id') and 'o_has_error' or ''} div_state" t-att-style="(not country or not country.state_ids) and 'display: none'">
+                <label class="col-form-label" for="state_id">State / Province</label>
+                <select name="state_id" t-attf-class="form-control #{error.get('state_id') and 'is-invalid' or ''}" data-init="1">
+                    <option value="">State / Province...</option>
+                    <t t-foreach="country and country.state_ids or []" t-as="s">
+                        <option t-att-value="s.id" t-att-selected="s.id == ('state_id' in checkout and country and checkout['state_id'] != '' and int(checkout['state_id']))">
+                            <t t-esc="s.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+
+        <!--Set Default Country = 'Colombia'-->
+        <xpath expr="//form//div[hasclass('form-row')]/div[12]" position="replace">
+            <div t-attf-class="form-group #{error.get('country_id') and 'o_has_error' or ''} col-lg-6 div_country" style="visibility: hidden;">
+                <label class="col-form-label" for="country_id">Country</label>
+                <select id="country_id" name="country_id" t-attf-class="form-control #{error.get('country_id') and 'is-invalid' or ''}">
+                    <option value="">Country...</option>
+                    <t t-foreach="countries" t-as="c">
+                        <!--option t-att-value="c.id" t-att-selected="c.id == (country and country.id or -1)"-->
+                        <option t-att-value="c.id" t-att-selected="c.code == 'CO'">
+                            <t t-esc="c.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="extend_address_b2b" name="Extend - Show b2b fields" inherit_id="website_sale.address_b2b">
+        <xpath expr="//form//div[hasclass('form-row')]//t[2]" position="replace">
+            <t t-if="mode == ('new', 'billing') or (mode == ('edit', 'billing') and (can_edit_vat or 'vat' in checkout and checkout['vat']))">
+                <!--#### Hide Company Field ####-->
+                <!--div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-lg-6">
+                    <label class="col-form-label font-weight-normal label-optional" for="company_name">Company Name</label>
+                    <input type="text" name="company_name" t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}" t-att-value="'commercial_company_name' in checkout and checkout['commercial_company_name'] or 'company_name' in checkout and checkout['company_name']" t-att-readonly="'1' if 'vat' in checkout and checkout['vat'] and not can_edit_vat else None" t-att-title="'Changing company name is not allowed once document(s) have been issued for your account. Please contact us directly for this operation.' if 'vat' in checkout and checkout['vat'] and not can_edit_vat else None" />
+                </div-->
+                <div t-attf-class="form-group #{error.get('vat') and 'o_has_error' or ''} col-lg-6 div_vat">
+                    <label class="col-form-label font-weight-normal label-optional" for="vat">TIN / VAT</label>
+                    <input type="text" name="vat" t-attf-class="form-control #{error.get('vat') and 'is-invalid' or ''}" t-att-value="'vat' in checkout and checkout['vat']" t-att-readonly="'1' if 'vat' in checkout and checkout['vat'] and not can_edit_vat else None" t-att-title="'Changing VAT number is not allowed once document(s) have been issued for your account. Please contact us directly for this operation.' if 'vat' in checkout and checkout['vat'] and not can_edit_vat else None" />
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

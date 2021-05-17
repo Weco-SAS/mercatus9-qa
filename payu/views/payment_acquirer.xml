@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="payment_acquirer_form_payu" model="ir.ui.view">
+			<field name="name">payment.acquirer.form.payu</field>
+			<field name="model">payment.acquirer</field>
+			<field name="inherit_id" ref="payment.acquirer_form" />
+			<field name="arch" type="xml">
+				<xpath expr='//group[@name="acquirer"]' position='after'>
+					<group attrs="{'invisible': [('provider', '!=', 'payu')]}">
+						<field name="payu_merchant_id" />
+						<field name="payu_account_id" />
+						<field name="payu_login" password="True" />
+						<field name="payu_api_key" password="True" />
+					</group>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>
